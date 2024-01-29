@@ -36,6 +36,8 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew clean build
+        env:
+          CI: "false"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
