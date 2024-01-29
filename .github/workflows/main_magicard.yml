@@ -15,7 +15,6 @@ jobs:
 
     steps:
       - name: npm install
-        working-directory: ${{ github.workspace }}/src/main/frontend
         run: |
           npm install
 
