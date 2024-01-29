@@ -26,8 +26,11 @@ jobs:
       - run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.properties
       - run: cat ./src/main/resources/application.properties
 
-      - name: Build with Gradle
-        run: chmod +x ./gradlew clean build
+      - name: Gradle grant permission
+        run: chmod +x gradlew
+
+      - name: Gradle build
+        run: ./gradle clean build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
