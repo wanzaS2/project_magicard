@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - name: npm install
-        run: ./src/main/frontend npm install
+        working-directory: ${{ github.workspace }}/src/main/frontend
+        run: |
+          npm install
 
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
