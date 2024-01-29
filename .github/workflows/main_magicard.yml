@@ -15,9 +15,7 @@ jobs:
 
     steps:
       - name: npm install
-        working-directory: ./src/main/frontend
-        run: |
-          npm install
+        run: ./src/main/frontend npm install
 
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
