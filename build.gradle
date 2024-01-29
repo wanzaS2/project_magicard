@@ -2,6 +2,14 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.8'
 	id 'io.spring.dependency-management' version '1.1.4'
+   id 'com.github.node-gradle.node' version '3.4.0'
+}
+
+node {
+	version = '17.6.0'
+	npmVersion = '8.5.1'
+	download = true
+	nodeProjectDir = file('${projectDir}/src/main/resources/static')
 }
 
 group = 'com.magic4'
@@ -41,10 +49,6 @@ tasks.named('test') {
 
 //React Build
 def frontendDir = "$projectDir/src/main/frontend"
-node {
-    download = true
-    version = "20.11.0"
-}
 
 sourceSets {
    main {
