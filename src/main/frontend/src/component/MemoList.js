@@ -35,6 +35,7 @@ function MemoList(props) {
 
   return (
     <div>
+      <h1>안녕하세요</h1>
       <Table>
         <thead>
           <tr>
