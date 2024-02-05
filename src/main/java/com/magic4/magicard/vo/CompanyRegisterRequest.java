@@ -39,6 +39,7 @@ public class CompanyRegisterRequest {
     @CreationTimestamp
     private Timestamp requestTime;
 
+    @Builder
     private boolean isPass = false;
 
     @Column(unique = true, nullable = false)
