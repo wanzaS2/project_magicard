@@ -2,9 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 
-function MemoList(props) {
-  const [memoList, setValueList] = useState([]);
-  const handleDelete = (id) => {
+interface MemoItem {
+  id: number;
+  memo: string;
+}
+
+function MemoList(props: any) {
+  const [memoList, setValueList] = useState<MemoItem[]>([]);
+
+  const handleDelete = (id: number) => {
     axios({
       method: "delete",
       url: `/test/delete/${id}`, // Adjust the URL according to your server endpoint
@@ -47,15 +53,17 @@ function MemoList(props) {
             memoList.map((item, idx) => (
               <tr key={idx}>
                 <td> {item.memo}</td>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  onClick={() => {
-                    handleDelete(item.id);
-                  }}
-                >
-                  삭제
-                </Button>
+                <td>
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={() => {
+                      handleDelete(item.id);
+                    }}
+                  >
+                    삭제
+                  </Button>
+                </td>
               </tr>
             ))}
         </tbody>
