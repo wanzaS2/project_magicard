@@ -35,7 +35,7 @@ public class Employee {
     @Id
     private String employeeEmail;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "rank_priority")
     private EmployeeRank employeeRank;
 
