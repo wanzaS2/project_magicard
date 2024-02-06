@@ -1,11 +1,19 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button, Form } from "react-bootstrap";
 
-function InsertItem(props) {
-  const [item, setItem] = useState({});
+interface Item {
+  memo?: string;
+}
 
-  const insertItem = (e) => {
+interface InsertItemProps {
+  // Add any props if needed
+}
+
+function InsertItem(props: InsertItemProps) {
+  const [item, setItem] = useState<Item>({});
+
+  const insertItem = (e: FormEvent) => {
     e.preventDefault(); // Prevent the default form submission
 
     axios({
@@ -18,12 +26,12 @@ function InsertItem(props) {
         window.location.replace("/");
       })
       .catch((err) => {
-        alert("error!", err);
+        alert("error!");
       });
   };
 
-  const inputChangeHandler = (e) => {
-    var newItem = { ...item, [e.target.name]: e.target.value };
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    var newItem: Item = { ...item, [e.target.name]: e.target.value };
     setItem(newItem);
   };
 
