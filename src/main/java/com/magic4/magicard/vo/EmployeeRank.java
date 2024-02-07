@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -24,7 +25,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(
+            name = "employeeRank",
+            columnNames = {"company_ticker","rank_priority"}
+        )
+    }
+)
 public class EmployeeRank {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,8 +42,8 @@ public class EmployeeRank {
     @JoinColumn(name = "company_ticker")
     private Company company;
 
-    @Column(nullable = false)
-    private int rank_priority;
+    @Column(name = "rank_priority",nullable = false)
+    private int rankPriority;
 
     @Column(name = "rank_name")
     private String rankName;

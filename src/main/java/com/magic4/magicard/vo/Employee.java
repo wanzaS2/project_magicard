@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -33,7 +35,7 @@ public class Employee {
     @Id
     private String employeeEmail;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "rank_priority")
     private EmployeeRank employeeRank;
 
@@ -41,16 +43,22 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    private Timestamp hireDate;
+
     @Column(nullable = false)
     private String employeeName;
+
+    @Column(nullable = false)
+    private String employeeCode;
 
     private Timestamp hireDate;
 
     @Column(unique = true)
     private String phone;
 
+    @Column(nullable = false)
     private String userPassword; // if not null, then login is possible
 
     @ColumnDefault(value = "false")
-    private boolean isApproved; // 가입 후 승인 여부
+    private boolean isApproved;
 }
