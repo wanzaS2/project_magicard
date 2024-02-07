@@ -1,16 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import InsertMemo from "./component/InsertMemo";
-import MemoList from "./component/MemoList";
+import EmpMgt from "./pages_mk/EmpMgt";
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <InsertMemo />
-        <hr />
         <Routes>
-          <Route path="/" element={<MemoList />} />
+          <Route path="/" element={<EmpMgt />} />
         </Routes>
       </BrowserRouter>
     </>

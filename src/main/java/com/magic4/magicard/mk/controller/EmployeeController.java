@@ -39,4 +39,6 @@ public class EmployeeController {
     public List<EmployeeInfoDto> getEmpListByRank(@PathVariable("employeeRankId") int employeeRankId){
         return employeeService.getEmpListByRank(employeeRankId);
     }
+    
+    // 특정 직원 검색
 }

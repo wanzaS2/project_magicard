@@ -24,6 +24,12 @@ public class EmployeeInfoDto {
 
     private EmployeeRank employeeRank;
 
+    // 상급부서
+
+    // 입사일
+
+    // 권한
+
     private Department department;
 
     private Company company;
