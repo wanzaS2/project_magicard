@@ -2,6 +2,8 @@ package com.magic4.magicard.vo;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
@@ -31,10 +33,9 @@ public class Employee {
     @Id
     private String employeeEmail;
 
-    @OneToOne(mappedBy = "employee")
-    private EmployeeAccount employeeAccount;
-
-    private EmployeeRankPk employeeRankPk;
+    @OneToOne
+    @JoinColumn(name = "rank_priority")
+    private EmployeeRank employeeRank;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -42,11 +43,14 @@ public class Employee {
 
     @Column(nullable = false)
     private String employeeName;
+
     private Timestamp hireDate;
 
     @Column(unique = true)
     private String phone;
 
-    private String userId; // null이 아니라면, 로그인 가능한 계정
     private String userPassword; // if not null, then login is possible
+
+    @ColumnDefault(value = "false")
+    private boolean isApproved; // 가입 후 승인 여부
 }
