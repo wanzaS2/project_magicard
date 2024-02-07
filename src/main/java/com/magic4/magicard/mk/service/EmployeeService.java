@@ -2,13 +2,17 @@ package com.magic4.magicard.mk.service;
 
 import com.magic4.magicard.mk.dto.EmployeeEmailDto;
 import com.magic4.magicard.mk.dto.EmployeeInfoDto;
+import com.magic4.magicard.mk.repository.CompanyRepo;
+import com.magic4.magicard.mk.repository.DepartmentRepo;
 import com.magic4.magicard.mk.repository.EmployeeRankRepo;
 import com.magic4.magicard.mk.repository.EmployeeRepo;
+import com.magic4.magicard.vo.Company;
 import com.magic4.magicard.vo.Employee;
 import com.magic4.magicard.vo.EmployeeRank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,24 +21,65 @@ public class EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final EmployeeRankRepo employeeRankRepo;
+    private final CompanyRepo companyRepo;
+    private final DepartmentRepo departmentRepo;
 
-    public List<Employee> getAllEmpList(EmployeeEmailDto employeeEmailDto){
+    // 회사의 전체 직원 조회
+    public List<EmployeeInfoDto> getAllEmpList(){
 
-        // 세션이나 어딘가에 등록되어 있는 직원 이메일로 직원 조회
-        Employee employee=employeeRepo.findById(employeeEmailDto.getEmployeeEmail()).orElse(null);
+        Company company= companyRepo.findById("SHDS").orElse(null);
 
-        // 직원 직급 조회
-        EmployeeRank employeeRank=employeeRankRepo.findById(employee.getEmployeeRank().getEmployeeRankId()).orElse(null);
+        // 세션에 등록된 Company 정보로 회사의 직급들을 조회
+        List<EmployeeRank> employeeRankList=employeeRankRepo.findEmployeeRanksByCompany(company);
 
-        // 해당 회사의 직급들 조회
-        List<EmployeeRank> employeeRankList=employeeRankRepo.findEmployeeRanksByCompany(employeeRank.getCompany());
-
-        // 해당 직급의 직원 조회
+        // 직급 id들에 해당하는 직원들 조회
         List<Employee> employees=employeeRepo.findAllByEmployeeRankIn(employeeRankList);
 
-        System.out.println(employees.toString());
+        return makeEmployeeInfoDtoList(employees, company);
+    }
 
-        return employees;
+    // 회사의 특정 부서 소속 직원 조회
+    public List<EmployeeInfoDto> getEmpListByDept(int departmentId){
+
+        Company company= companyRepo.findById("SHDS").orElse(null);
+
+        // 세션에 등록된 Company 정보로 회사의 직급들을 조회
+        List<EmployeeRank> employeeRankList=employeeRankRepo.findEmployeeRanksByCompany(company);
+
+        // 특정 부서에 해당하는 직원들 조회
+        List<Employee> employees=employeeRepo.findAllByDepartmentAndEmployeeRankIn(departmentRepo.findById(departmentId).orElse(null), employeeRankList);
+
+        return makeEmployeeInfoDtoList(employees, company);
+    }
+    
+    public List<EmployeeInfoDto> getEmpListByRank(int employeeRankId){
+
+        EmployeeRank employeeRank= employeeRankRepo.findById(employeeRankId).orElse(null);
+
+        // 세션에 등록된 직급 정보에 해당하는 직원들 조회
+        List<Employee> employees=employeeRepo.findAllByEmployeeRank(employeeRank);
+
+        return makeEmployeeInfoDtoList(employees, employeeRank.getCompany());
+    }
+
+    // Employee 리스트 => EmployeeInfoDto 리스트 변환
+    public List<EmployeeInfoDto> makeEmployeeInfoDtoList(List<Employee> employees, Company company){
+
+        List<EmployeeInfoDto> employeeInfoList=new ArrayList<>();
+
+        for (Employee employee:employees){
+            employeeInfoList.add(EmployeeInfoDto.builder()
+                    .employeeEmail(employee.getEmployeeEmail())
+                    .employeeCode(employee.getEmployeeCode())
+                    .employeeName(employee.getEmployeeName())
+                    .employeeRank(employee.getEmployeeRank())
+                    .phone(employee.getPhone())
+                    .company(company)
+                    .department(employee.getDepartment())
+                    .build());
+        }
+
+        return employeeInfoList;
     }
 
 

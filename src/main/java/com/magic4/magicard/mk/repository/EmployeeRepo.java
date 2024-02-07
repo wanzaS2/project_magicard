@@ -1,5 +1,7 @@
 package com.magic4.magicard.mk.repository;
 
+import com.magic4.magicard.mk.dto.EmployeeInfoDto;
+import com.magic4.magicard.vo.Department;
 import com.magic4.magicard.vo.Employee;
 import com.magic4.magicard.vo.EmployeeRank;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +15,8 @@ public interface EmployeeRepo extends JpaRepository<Employee, String> {
 
     // 회사의 전체 직원 조회
     List<Employee> findAllByEmployeeRankIn(List<EmployeeRank> employeeRank);
+
+    List<Employee> findAllByDepartmentAndEmployeeRankIn(Department department, List<EmployeeRank> employeeRank);
+
+    List<Employee> findAllByEmployeeRank(EmployeeRank employeeRank);
 }
