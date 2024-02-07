@@ -51,6 +51,8 @@ public class Employee {
     @Column(nullable = false)
     private String employeeCode;
 
+    private Timestamp hireDate;
+
     @Column(unique = true)
     private String phone;
 
@@ -59,5 +61,4 @@ public class Employee {
 
     @ColumnDefault(value = "false")
     private boolean isApproved;
-
 }
