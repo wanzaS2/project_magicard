@@ -5,15 +5,9 @@ import MemoList from "./component/MemoList";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <InsertMemo />
-        <hr />
-        <Routes>
-          <Route path="/" element={<MemoList />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <div>
+      App
+    </div>
   );
 }
 
