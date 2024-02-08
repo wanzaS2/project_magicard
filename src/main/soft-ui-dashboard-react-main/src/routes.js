@@ -54,6 +54,7 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+import DeptList from "components_jy/Table/index_jy";
 
 const routes = [
   {
@@ -72,6 +73,15 @@ const routes = [
     route: "/tables",
     icon: <Office size="12px" />,
     component: <Tables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Department",
+    key: "departments",
+    route: "/departments",
+    icon: <Office size="12px" />,
+    component: <DeptList />,
     noCollapse: true,
   },
   {
