@@ -2,14 +2,15 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InsertMemo from "./component/InsertMemo";
 import MemoList from "./component/MemoList";
-import DepartmentList from "./component_jy/DepartmentList";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <InsertMemo />
+        <hr />
         <Routes>
-          <Route path="/jy" element={<DepartmentList />} />
+          <Route path="/" element={<MemoList />} />
         </Routes>
       </BrowserRouter>
     </>
