@@ -1,0 +1,76 @@
+.direction_text_box {
+  width: "291px";
+  height: "161px";
+  font-family: "Chungbuk National University Regular";
+}
+
+.title {
+  font-family: "Chungbuk National University Regular";
+}
+
+.document {
+  font-family: "Chungbuk National University Regular";
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.videoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* .directionTextBox {
+  margin: 20px 0;
+} */
+.directionTextBox {
+  /* display: flex; */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.directionTextBox img {
+  margin-right: 20px;
+}
+
+.directionTextBox p {
+  font-family: "Chungbuk National University Regular";
+  flex-grow: 1;
+  margin: 0;
+  margin-left: 200px;
+  width: 50%; /* 동영상의 절반 너비 */
+  text-align: left;
+}
+
+.videoFrame {
+  margin-right: 20px;
+}
+
+.agreementContainer {
+  text-align: center;
+}
+
+.useAgreement {
+  margin-bottom: 20px;
+}
+
+.documents {
+  /* display: flex; */
+  justify-content: center;
+}
+
+.documents div {
+  margin-right: 10px;
+}
+
+.documents div:last-child {
+  margin-right: 0;
+}

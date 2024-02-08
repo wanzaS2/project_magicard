@@ -28,7 +28,10 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "employee_email")
     private Employee employee;
-    private UUID paymentId;
+
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    private PaymentInfo paymentiInfo;
 
     @ManyToOne
     @JoinColumn(name = "purpose_item_uid")
