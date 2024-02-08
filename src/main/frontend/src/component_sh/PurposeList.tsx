@@ -122,8 +122,8 @@ function CategoryDisplay({
           ))}
         </tbody>
       </Table>
-      {/* 상위용도추가  연습*/}
-      {/* <Form>
+      <h1> 데이터 입력 연습!!!!!!!!</h1>
+      <Form>
         <Form.Group as={Row} className="mb-3" controlId="newCategory">
           <Form.Label column sm="2">
             Add New Category
@@ -140,7 +140,7 @@ function CategoryDisplay({
         <Button variant="primary" onClick={handleSubmit}>
           Add
         </Button>
-      </Form> */}
+      </Form>
     </>
   );
 }

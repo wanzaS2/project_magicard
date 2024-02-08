@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.magic4.magicard.dto.PurposeDto;
-import com.magic4.magicard.dto.PurposeDto2;
 import com.magic4.magicard.repository.PurposeCategoryRepository;
 import com.magic4.magicard.repository.PurposeItemRepository;
 import com.magic4.magicard.vo.Company;
@@ -30,7 +29,7 @@ public class PurposeService {
     
 
 
-    //대분류만 가져오기
+    //대분류 조회
     public List<PurposeDto> getCateList1(){
 
       List<PurposeDto> purposeDtoList = new ArrayList<>();
@@ -49,10 +48,7 @@ public class PurposeService {
       return purposeDtoList;
     }
 
-
-
-
-      //우리 기업 대분류 , 소분류 조회
+      // 대분류 , 소분류 조회
     public List<PurposeDto> getCateList2(){
 
       
@@ -86,7 +82,6 @@ public class PurposeService {
 
 
       //session에서 company를 찾는다?
-
       Company company = Company.builder()
       .companyTicker("TEST1").build();
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ModalBasic.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Select from "./Select";
@@ -9,15 +9,26 @@ interface Purpose {
   purposeCategory: string;
 }
 
+interface insertPurpose {
+  purposeCategory: string;
+  purposeItem: string;
+}
+
 interface ModalBasicProps {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ModalBasic({ setModalOpen }: ModalBasicProps) {
-  //대분류 목록
+  const [inputValues, setInputValues] = useState<{ [key: string]: string }>({});
+  const [selectValue, setSelectValue] = useState("");
+
+  console.log(inputValues);
+  console.log(selectValue);
+
+  // 대분류 목록
   const [purList, setPurList] = useState<Purpose[]>([]);
 
-  // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
+  // 모달 끄기 (X 버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -54,14 +65,40 @@ function ModalBasic({ setModalOpen }: ModalBasicProps) {
     })
       .then((res) => {
         console.log(res.data);
-        console.log("Modal check box list성공 성공 성공 성공 성공 성공");
+        console.log("Modal check box list 성공");
         setPurList(res.data);
       })
       .catch((err) => {
         console.log(err);
-        console.log("Modal check box list실패 실패 실패 실패 실패 실패");
+        console.log("Modal check box list 실패");
       });
   }, []);
+
+  const getResult = (obj: { [key: string]: string }) => {
+    setInputValues({ ...inputValues, ...obj });
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // 여기서 API 호출하고 inputValues, selectValue를 전송합니다.
+    console.log("Form submitted!");
+    console.log("Input values:", inputValues);
+    console.log("Select value:", selectValue);
+  };
+
+  const handleSubmit = () => {
+    axios({
+      method: "post",
+      url: "/pur/insert2.do",
+      data: {},
+    })
+      .then((res) => {
+        console.log("대 소 insert 성공!!!!!!!!!!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     // 모달창을 useRef로 잡아준다.
@@ -70,7 +107,7 @@ function ModalBasic({ setModalOpen }: ModalBasicProps) {
         X
       </button>
       <p>모달창입니다.</p>
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="Category">
           <Form.Label column sm="2">
             대분류
@@ -93,13 +130,22 @@ function ModalBasic({ setModalOpen }: ModalBasicProps) {
           value="등록"
         />
       </Form>
-      <form>
-        <Select purList={purList} />
-        <Input name="age"></Input>
-        <Input name="birthday"></Input>
-        <Button type="submit"></Button>
+      <form onSubmit={handleFormSubmit}>
+        <Select
+          propsname="selectCategory"
+          purList={purList}
+          initValue={purList[0]}
+          setSelectValue={setSelectValue}
+        />
+        <Input propsname="purposeItem" getResult={getResult}></Input>
+        <Input propsname="purposeCategory" getResult={getResult}></Input>
+        <Button type="submit" onClick={handleSubmit}>
+          등록하기
+        </Button>
       </form>
     </div>
   );
 }
 export default ModalBasic;
+//purposeItem
+//purposeCategory

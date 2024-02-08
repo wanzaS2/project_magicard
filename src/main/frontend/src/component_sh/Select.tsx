@@ -1,20 +1,31 @@
-import React from "react";
-
-interface purList {
-  purposeCategory: string;
-}
+import React, { useState } from "react";
 
 interface SelectProps {
-  purList: purList[];
+  purList: { purposeCategory: string }[];
+  initValue?: { purposeCategory: string };
+  propsname: string;
+  setSelectValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Select: React.FC<SelectProps> = ({ purList }) => {
+const Select: React.FC<SelectProps> = ({
+  purList,
+  initValue,
+  propsname,
+  setSelectValue,
+}) => {
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
   return (
-    <select>
+    <select
+      name={propsname}
+      value={initValue?.purposeCategory}
+      onChange={(e) => {
+        setSelectValue(e.target.value);
+      }}
+    >
       {purList.map((purList, index) => (
         <option key={index} value={purList.purposeCategory}>
           {purList.purposeCategory}
-          ?????
         </option>
       ))}
     </select>
