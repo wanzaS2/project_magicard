@@ -2,13 +2,23 @@ package com.magic4.magicard.controller;
 
 import java.util.List;
 
+import javax.xml.crypto.KeySelector.Purpose;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.magic4.magicard.repository.PurposeCategoryRepository;
+
+import com.magic4.magicard.dto.PurposeDto;
+import com.magic4.magicard.dto.PurposeDto2;
 import com.magic4.magicard.service.PurposeService;
+import com.magic4.magicard.vo.Company;
 import com.magic4.magicard.vo.PurposeCategory;
+
+
 
 @RestController
 @RequestMapping("/pur")
@@ -18,14 +28,22 @@ public class PurposeController {
     PurposeService purService;
 
 
-    @Autowired
-    PurposeCategoryRepository purCateRepo;
 
 
-    @PostMapping("/list.do")
-    public List<PurposeCategory> findMyCategory(String companyTicker){
-        return  purService.findMyCategory(companyTicker);
-    }
+    //대분류만 가져오기
+     @GetMapping("/catelist.do")
+     public List<PurposeDto> getCateList1(){
+        return purService.getCateList1();
+     };
 
-    
+    // 대분류 소분류 찾기 가져오기
+    @GetMapping("/list.do")
+    public List<PurposeDto> getCateList2(){
+        return purService.getCateList2();
+    };
+
+    @PostMapping("/insert.do")
+    public void insertCategory(@RequestBody PurposeCategory purposeCategory){
+        purService.insertCategory(purposeCategory);
+    };
 }
