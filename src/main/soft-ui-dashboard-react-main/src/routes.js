@@ -54,6 +54,7 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+import Onboarding from "component_sg/onboarding";
 
 const routes = [
   {
@@ -72,6 +73,15 @@ const routes = [
     route: "/tables",
     icon: <Office size="12px" />,
     component: <Tables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "onboarding",
+    key: "onboarding",
+    route: "/onboarding",
+    icon: <CreditCard size="12px" />,
+    component: <Onboarding />,
     noCollapse: true,
   },
   {
