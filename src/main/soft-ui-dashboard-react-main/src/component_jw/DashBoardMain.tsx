@@ -11,7 +11,7 @@ function DashBoardMain() {
         <>
         <div>
             <div>
-                <BasicInformation/><br/><br/>
+                {/* <BasicInformation/><br/><br/> */}
             </div>
             <div className='whole-board'>
                 <div>
