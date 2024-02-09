@@ -1,8 +1,5 @@
 package com.magic4.magicard.dto_sy;
 
-import java.sql.Timestamp;
-
-import com.magic4.magicard.vo.Company;
 import com.magic4.magicard.vo.Department;
 import com.magic4.magicard.vo.EmployeeRank;
 
@@ -22,5 +19,5 @@ public class EmployeeDto {
     private String userId;
     private EmployeeRank employeeRank;
     private Department department;
-    private Company company;
+    private CompanyDto company;
 }

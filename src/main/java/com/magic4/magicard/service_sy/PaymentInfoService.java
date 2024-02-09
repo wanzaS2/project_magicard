@@ -1,6 +1,6 @@
 package com.magic4.magicard.service_sy;
 
-import java.util.List;
+import java.util.*;
 
 import com.magic4.magicard.dto_sy.PaymentInfoDto;
 import com.magic4.magicard.vo.Employee;
@@ -18,17 +18,20 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class PaymentInfoService {
-  IssuedCardRepo issuedCardRepo;
-  PaymentInfoRepo paymentInfoRepo;
-  ModelMapper model = new ModelMapper();
+  private final IssuedCardRepo issuedCardRepo;
+  private final PaymentInfoRepo paymentInfoRepo;
+  private ModelMapper model = new ModelMapper();
   public List<PaymentInfoDto> getPaymentInfoList(EmployeeDto employeeDto) {
     Employee employee = model.map(employeeDto, Employee.class);
     IssuedCard issuedCard = issuedCardRepo.findByEmployee(employee);
     List<PaymentInfo> paymentInfoList = paymentInfoRepo.findByIssuedCard(issuedCard);
-
-    return null;
+    List<PaymentInfoDto> paymentInfoDtoList = new ArrayList<>();
+    for(PaymentInfo paymentInfo : paymentInfoList){
+      PaymentInfoDto paymentInfoDto = model.map(paymentInfo, PaymentInfoDto.class);
+      paymentInfoDtoList.add(paymentInfoDto);
+    }
+    return paymentInfoDtoList;
   }
 
-  
   
 }

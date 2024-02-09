@@ -15,8 +15,4 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/request")
 public class RequestController {
 
-  @GetMapping("")
-  public List<Request> getRequestList(){
-      return null;
-  }
 }
