@@ -28,10 +28,9 @@ import Table from "examples/Tables/Table";
 
 // Data
 import requestTableData from "layouts/request/data/paymentHistory";
-import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function PaymentsTables() {
-  const { columns, rows } = requestTableData;
+  const { columns, rows } = requestTableData();
 
   return (
     <DashboardLayout>

@@ -1,10 +1,25 @@
 /* eslint-disable react/prop-types */
 // Soft UI Dashboard React components
+import axios from "axios";
 import SoftTypography from "components/SoftTypography";
+import { useEffect, useState } from "react";
 
-const requestTableData = {
-  // const [paymentList, setPaymentList] = useState([]);
-  columns: [
+const requestTableData = () => {
+  const [paymentList, setPaymentList] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "/paymentInfo/getList",
+    })
+      .then((result) => {
+        console.log(result.data);
+        setPaymentList(result.data);
+      })
+      .catch((err) => {});
+  }, []);
+
+  const columns = [
     { name: "결제일시", align: "center" },
     { name: "사용처", align: "center" },
     { name: "사용금액", align: "center" },
@@ -12,28 +27,30 @@ const requestTableData = {
     { name: "문서번호", align: "center" },
     { name: "상태", align: "center" },
     { name: "승인요청", align: "center" },
-  ],
+  ];
 
-  rows: [
-    {
+  const rows = paymentList.map((payment) => {
+    const paymentDate = payment.paymentTime.substr(0, 10);
+
+    return {
       결제일시: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          23/04/18
+          {paymentDate}
         </SoftTypography>
       ),
       사용처: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          마포곱창타운
+          {payment.merchant}
         </SoftTypography>
       ),
       사용금액: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          39000
+          {payment.payAmount}
         </SoftTypography>
       ),
       카드번호: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          1111-2222-3333-4444
+          {payment.issuedCard.cardNumber}
         </SoftTypography>
       ),
       문서번호: (
@@ -63,8 +80,9 @@ const requestTableData = {
           승인 요청
         </SoftTypography>
       ),
-    },
-  ],
+    };
+  });
+  return { columns, rows };
 };
 
 export default requestTableData;
