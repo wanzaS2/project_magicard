@@ -45,14 +45,14 @@
 //   </>
 // );
 
-import React, { useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
-import { SoftUIControllerProvider } from "./context";
 import "assets/css/modal.css";
 import Modal from "components_jy/Modal/Modal";
+import { SoftUIControllerProvider } from "./context";
 
 const AppWithModal = () => {
   const [modalOpen, setModalOpen] = useState(false);

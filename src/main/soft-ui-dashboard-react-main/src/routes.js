@@ -36,25 +36,25 @@ Coded by www.creative-tim.com
 */
 
 // Soft UI Dashboard React layouts
-import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
-import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import Billing from "layouts/billing";
+import Dashboard from "layouts/dashboard";
+import Profile from "layouts/profile";
+import RTL from "layouts/rtl";
+import Tables from "layouts/tables";
+import VirtualReality from "layouts/virtual-reality";
 
 // Soft UI Dashboard React icons
-import Shop from "examples/Icons/Shop";
-import Office from "examples/Icons/Office";
-import Settings from "examples/Icons/Settings";
-import Document from "examples/Icons/Document";
-import SpaceShip from "examples/Icons/SpaceShip";
-import CustomerSupport from "examples/Icons/CustomerSupport";
+import DeptListTbl from "components_jy/Table/DeptListTbl";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
-import DeptList from "components_jy/Table/index_jy";
+import CustomerSupport from "examples/Icons/CustomerSupport";
+import Document from "examples/Icons/Document";
+import Office from "examples/Icons/Office";
+import Settings from "examples/Icons/Settings";
+import Shop from "examples/Icons/Shop";
+import SpaceShip from "examples/Icons/SpaceShip";
 
 const routes = [
   {
@@ -81,7 +81,7 @@ const routes = [
     key: "departments",
     route: "/departments",
     icon: <Office size="12px" />,
-    component: <DeptList />,
+    component: <DeptListTbl />,
     noCollapse: true,
   },
   {
