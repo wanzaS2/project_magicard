@@ -59,5 +59,4 @@ public class Employee {
 
     @ColumnDefault(value = "false")
     private boolean isApproved;
-
 }

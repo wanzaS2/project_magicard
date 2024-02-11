@@ -1,0 +1,36 @@
+package com.magic4.magicard.mk.dto;
+
+import com.magic4.magicard.vo.Company;
+import com.magic4.magicard.vo.Department;
+import com.magic4.magicard.vo.EmployeeRank;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+public class EmployeeInfoDto {
+
+    // 로그인 후 세션 또는 쿠키에 담을 직원 정보
+
+    private String employeeEmail;
+
+    private String employeeName;
+
+    private String phone;
+    
+    private String employeeCode;    // 사번
+
+    private EmployeeRank employeeRank;
+
+    // 상급부서
+
+    // 입사일
+
+    // 권한
+
+    private Department department;
+
+    private Company company;
+}
