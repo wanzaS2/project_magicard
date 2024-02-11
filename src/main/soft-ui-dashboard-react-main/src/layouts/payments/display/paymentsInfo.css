@@ -1,0 +1,17 @@
+.money-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.this-month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.this-month img {
+  width: 70px;
+  height: 70px;
+}
