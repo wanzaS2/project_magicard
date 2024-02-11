@@ -4,33 +4,34 @@ import axios from "axios";
 import SoftTypography from "components/SoftTypography";
 import { useEffect, useState } from "react";
 
-const requestTableData = () => {
-  const [paymentList, setPaymentList] = useState([]);
+const RequestToMeData = () => {
+  const [requestList, setRequestList] = useState([]);
 
   useEffect(() => {
     axios({
       method: "get",
-      url: "/paymentInfo/getList",
+      url: "/requests/toMe/getAllList",
     })
       .then((result) => {
         console.log(result.data);
-        setPaymentList(result.data);
+        setRequestList(result.data);
       })
       .catch((err) => {});
   }, []);
 
   const columns = [
     { name: "결제일시", align: "center" },
-    { name: "사용처", align: "center" },
+    { name: "요청자", align: "center" },
+    { name: "권한자", align: "center" },
+    { name: "가맹점", align: "center" },
     { name: "사용금액", align: "center" },
-    { name: "카드번호", align: "center" },
-    { name: "문서번호", align: "center" },
+    { name: "용도", align: "center" },
     { name: "상태", align: "center" },
     { name: "승인요청", align: "center" },
   ];
 
-  const rows = paymentList.map((payment) => {
-    const paymentDate = payment.paymentTime.substr(0, 10);
+  const rows = requestList.map((request) => {
+    const paymentDate = request.paymentInfo.paymentTime.substr(0, 10);
 
     return {
       결제일시: (
@@ -38,22 +39,27 @@ const requestTableData = () => {
           {paymentDate}
         </SoftTypography>
       ),
-      사용처: (
+      요청자: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          {payment.merchant}
+          {request.employee.employeeName}
+        </SoftTypography>
+      ),
+      권한자: (
+        <SoftTypography variant="caption" color="secondary" fontWeight="medium">
+          {request.responseEmployeeEmail}
+        </SoftTypography>
+      ),
+      가맹점: (
+        <SoftTypography variant="caption" color="secondary" fontWeight="medium">
+          {request.paymentInfo.merchant}
         </SoftTypography>
       ),
       사용금액: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          {payment.payAmount}
+          {request.paymentInfo.payAmount}
         </SoftTypography>
       ),
-      카드번호: (
-        <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          {payment.issuedCard.cardNumber}
-        </SoftTypography>
-      ),
-      문서번호: (
+      용도: (
         <SoftTypography
           component="a"
           href="#"
@@ -61,12 +67,12 @@ const requestTableData = () => {
           color="secondary"
           fontWeight="medium"
         >
-          1111-1111
+          {request.purposeItem.purposeItem}
         </SoftTypography>
       ),
       상태: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          1차 승인
+          {request.requestStatus}
         </SoftTypography>
       ),
       승인요청: (
@@ -77,7 +83,7 @@ const requestTableData = () => {
           color="secondary"
           fontWeight="medium"
         >
-          승인 요청
+          {request.sendRequest}
         </SoftTypography>
       ),
     };
@@ -85,4 +91,4 @@ const requestTableData = () => {
   return { columns, rows };
 };
 
-export default requestTableData;
+export default RequestToMeData;
