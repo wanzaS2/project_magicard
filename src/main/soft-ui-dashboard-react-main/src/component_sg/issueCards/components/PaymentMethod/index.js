@@ -31,7 +31,6 @@ import borders from "assets/theme/base/borders";
 import masterCardLogo from "assets/images/logos/mastercard.png";
 import visaLogo from "assets/images/logos/visa.png";
 import Invoices from "component_sg/onboarding/components/Invoices";
-import "assets/css/Modal_sg.css";
 import { useState } from "react";
 function Modal() {
   return (
