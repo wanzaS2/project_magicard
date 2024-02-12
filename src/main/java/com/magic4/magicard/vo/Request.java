@@ -26,12 +26,14 @@ public class Request {
     private UUID requestID;
 
     @ManyToOne
-    @JoinColumn(name = "employee_email")
+    @JoinColumn(name = "request_employee_email")
     private Employee employee;
+
+    private String responseEmployeeEmail;
 
     @ManyToOne
     @JoinColumn(name = "payment_id")
-    private PaymentInfo paymentiInfo;
+    private PaymentInfo paymentInfo;
 
     @ManyToOne
     @JoinColumn(name = "purpose_item_uid")
@@ -39,7 +41,11 @@ public class Request {
     private String participant;
     private String receiptUrl;
     private String memo;
-    private Integer approvalStatusCode;
+
+    @ManyToOne
+    @JoinColumn(name = "approval_status_code")
+    private ApprovalSteps approvalSteps;
+
     private Integer refuseCount;
     private Integer requestLevel;
 

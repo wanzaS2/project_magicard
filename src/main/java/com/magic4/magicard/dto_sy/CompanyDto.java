@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyDto {
     private String companyTicker;
-    // private MasterAccount masterAccount;
-    // private CompanyRegisterRequest companyRegisterRequest;
     private String companyName;
-    // private Timestamp registerDate;
 }

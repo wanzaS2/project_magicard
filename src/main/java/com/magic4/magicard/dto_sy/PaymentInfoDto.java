@@ -18,8 +18,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PaymentInfoDto {
     private UUID paymentId;
-    private IssuedCard issuedCard;
+    private IssuedCardDto issuedCard;
     private int payAmount;
     private String merchant;
     private Timestamp paymentTime;
+    private String requestStatus;
+    private String sendRequest;
 }
