@@ -72,7 +72,7 @@ const RequestApproveData = () => {
       ),
       상태: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          {approve.requestStatus}
+          {request.approvalSteps.approvalStep}
         </SoftTypography>
       ),
       승인요청: (

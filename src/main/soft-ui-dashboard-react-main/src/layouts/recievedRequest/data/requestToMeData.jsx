@@ -72,7 +72,7 @@ const RequestToMeData = () => {
       ),
       상태: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          {request.requestStatus}
+          {request.approvalSteps.approvalStep}
         </SoftTypography>
       ),
       승인요청: (

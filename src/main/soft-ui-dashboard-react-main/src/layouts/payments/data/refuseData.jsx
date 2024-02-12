@@ -67,7 +67,7 @@ const RefuseData = () => {
           color="secondary"
           fontWeight="medium"
         >
-          {refuse.purposeItem.purposeItem}
+          {request.approvalSteps.approvalStep}
         </SoftTypography>
       ),
       상태: (
