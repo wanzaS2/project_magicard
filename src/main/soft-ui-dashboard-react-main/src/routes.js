@@ -46,7 +46,7 @@ import Tables from "layouts/tables";
 import VirtualReality from "layouts/virtual-reality";
 
 // Soft UI Dashboard React icons
-import DeptListTbl from "components_jy/Table/DeptListTbl";
+import Tablesjy from "components_jy/tables";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import CustomerSupport from "examples/Icons/CustomerSupport";
@@ -81,7 +81,7 @@ const routes = [
     key: "departments",
     route: "/departments",
     icon: <Office size="12px" />,
-    component: <DeptListTbl />,
+    component: <Tablesjy />,
     noCollapse: true,
   },
   {
