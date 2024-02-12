@@ -46,6 +46,39 @@ class MagicardApplicationTests {
 	}
 
 	void insertRequest(){
+		Employee employee = employeeRepo.findById("aa15@naver.com").orElse(null);
+		ApprovalSteps approvalSteps = approvalStepsRepo.findById(5).orElse(null);
+
+		Request request = requestRepo.findById(UUID.fromString("00fa39eb-b308-4fb2-963e-3977187bf813")).orElse(null);
+
+		Company company = employee.getEmployeeRank().getCompany(); // 나의 company 정보
+
+        assert request != null;
+
+		Random random = new Random();
+		List<Employee> superEmployees = employeeRepo.findByDepartment(employee.getDepartment());
+		String superEmployeeEmail = superEmployees.get(random.nextInt(superEmployees.size())).getEmployeeEmail();
+
+
+        Request setRequest = Request.builder()
+				.employee(employee)
+				.responseEmployeeEmail(superEmployeeEmail)
+				.paymentInfo(request.getPaymentInfo())
+				.purposeItem(request.getPurposeItem())
+				.participant(request.getParticipant())
+				.receiptUrl(request.getReceiptUrl())
+				.memo(request.getMemo())
+				.approvalSteps(approvalSteps)
+				.refuseCount(request.getRefuseCount())
+				.requestLevel(2)
+									.build();
+
+
+
+		requestRepo.save(setRequest);
+	}
+
+	void insertRequest_1(){
 		Employee employee = employeeRepo.findById("aa2@naver.com").orElse(null);
 		ApprovalSteps approvalSteps = approvalStepsRepo.findById(1).orElse(null);
 		PaymentInfo paymentInfo = paymentInfoRepo.findById(UUID.fromString("35f86ed0-c7ef-55eb-bf10-b42e99073dcc")).orElse(null);
