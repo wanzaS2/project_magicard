@@ -24,6 +24,7 @@ import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 import Select from "react-select";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CardIssueInputForm() {
   const [agreement, setAgremment] = useState(true);
@@ -31,7 +32,7 @@ function CardIssueInputForm() {
   const [rankSelect, setRankSelect] = useState(null);
   const [maxLimit, setMaxLimit] = useState(0);
   const [cardCount, setCardCount] = useState(0);
-
+  const navi = useNavigate();
   const handleSetAgremment = () => setAgremment(!agreement);
   const rank = [
     { value: "임원", label: "임원" },
@@ -116,9 +117,9 @@ function CardIssueInputForm() {
           variant="gradient"
           color="dark"
           fullWidth
-          onClick={() =>
-            submitCardIssueForm(cardCodeSelect, rankSelect, maxLimit, cardCount, agreement)
-          }
+          onClick={() => {
+            submitCardIssueForm(cardCodeSelect, rankSelect, maxLimit, cardCount, agreement);
+          }}
         >
           발급 신청
         </SoftButton>
@@ -126,6 +127,7 @@ function CardIssueInputForm() {
     </SoftBox>
   );
 }
+
 const submitCardIssueForm = (cardCode, rank, maxLimit, cardCount, agreement) => {
   if (!agreement) {
     alert("약관에 동의해주십시오.");
@@ -171,8 +173,9 @@ const submitCardIssueForm = (cardCode, rank, maxLimit, cardCount, agreement) => 
       alert("신청 요청 중 문제가 발생하였습니다. 관리자에게 문의해주세요.");
     })
     .finally(function () {
-      window.location.href = "/issue-cards";
-      //window.location.reload();
+      //window.location.href = "/issue-cards";
+      window.location.reload();
+      //navi("/issue-cards");
     });
 };
 
