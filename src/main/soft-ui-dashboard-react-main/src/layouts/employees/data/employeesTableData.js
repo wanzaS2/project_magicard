@@ -13,8 +13,10 @@ function employeesTableData() {
     axios
       .get("/emp/list/all")
       .then((response) => {
-        console.log(response.data);
-        setEmpList(response.data);
+        if (response.data != "") {
+          setEmpList(response.data);
+        }
+        console.log("n\n\n\n\n\nresponse.data\n\n\n\n\n" + response.data);
       })
       .catch((error) => console.error(error));
   };

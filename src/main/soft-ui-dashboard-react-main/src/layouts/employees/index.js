@@ -14,8 +14,6 @@ import Table from "examples/Tables/Table";
 // Data
 import employeesTableData from "./data/employeesTableData";
 import SoftPagination from "components/SoftPagination";
-import SoftButton from "components/SoftButton";
-import { Button } from "@mui/material";
 
 function Employees() {
   const { columns, rows } = employeesTableData();
@@ -26,10 +24,20 @@ function Employees() {
       <SoftBox py={3}>
         <SoftBox mb={3}>
           <Card>
-            <SoftBox display="flex" flexDirection= "column" justifyContent="space-between" alignItems="flex-start" p={3}>
-                <SoftTypography variant="h6" fontWeight="bold">직원 관리</SoftTypography>
-                <SoftTypography variant="h6" fontWeight="light" color="secondary">부서의 현황을 확인하고 추가, 수정, 삭제를 할 수 있습니다.</SoftTypography>
-              </SoftBox>
+            <SoftBox
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+              alignItems="flex-start"
+              p={3}
+            >
+              <SoftTypography variant="h6" fontWeight="bold">
+                직원 관리
+              </SoftTypography>
+              <SoftTypography variant="h6" fontWeight="light" color="secondary">
+                부서의 현황을 확인하고 추가, 수정, 삭제를 할 수 있습니다.
+              </SoftTypography>
+            </SoftBox>
             <SoftBox
               sx={{
                 "& .MuiTableRow-root:not(:last-child)": {
