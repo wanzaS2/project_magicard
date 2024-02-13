@@ -23,11 +23,11 @@ import lombok.NonNull;
 @Builder
 public class PurposeItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID purposeItemUid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer purposeItemUid;
 
     @ManyToOne
-    @JoinColumn(name = "purpose_category_uid")
+    @JoinColumn(name = "purpose_category_id")
     private PurposeCategory purposeCategory;
 
     @NonNull

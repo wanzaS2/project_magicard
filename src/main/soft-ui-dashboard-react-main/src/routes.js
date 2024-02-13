@@ -53,7 +53,12 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+
 import Dashboard from "component_jw/dashboard";
+import Onboarding from "component_sg/onboarding";
+import IssueCards from "component_sg/issueCards/components";
+import RecievedRequest from "layouts/recievedRequest";
+import PaymentsTables from "layouts/payments";
 
 const routes = [
   {
@@ -72,6 +77,42 @@ const routes = [
     route: "/tables",
     icon: <Office size="12px" />,
     component: <Tables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "결제 내역",
+    key: "paymentstables",
+    route: "/payments/*",
+    icon: <Office size="12px" />,
+    component: <PaymentsTables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "결재 요청 내역",
+    key: "requeststables",
+    route: "/recievedRequests/*",
+    icon: <Office size="12px" />,
+    component: <RecievedRequest />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "카드 사용 등록",
+    key: "onboarding",
+    route: "/onboarding",
+    icon: <CreditCard size="12px" />,
+    component: <Onboarding />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "카드 신규 발급",
+    key: "IssueCards",
+    route: "/issue-cards",
+    icon: <CreditCard size="12px" />,
+    component: <IssueCards />,
     noCollapse: true,
   },
   {

@@ -34,7 +34,7 @@ public class OnBoardingVideo {
     private String videoUrl;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_ticker")
     Company company;
     // ex. 삼성의 직원 교육 영상이 2개,
     // LG의 직원 교육 영상이 3개
