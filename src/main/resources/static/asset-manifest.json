@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.4831036f.js",
+    "main.js": "/static/js/main.5d33b6ac.js",
     "static/media/home-decor-3.jpg": "/static/media/home-decor-3.74d13fcbd3c631fc7908.jpg",
     "static/media/home-decor-2.jpg": "/static/media/home-decor-2.b4e5397c9846645ba275.jpg",
     "static/media/home-decor-1.jpg": "/static/media/home-decor-1.05e218fd495ccc65c99d.jpg",
@@ -12,6 +12,7 @@
     "static/media/rocket-white.png": "/static/media/rocket-white.de5786399f850a27a362.png",
     "static/media/curved-6.jpg": "/static/media/curved-6.71ee1d1cc8196ed2126b.jpg",
     "static/media/curved1.jpg": "/static/media/curved1.af81cb53f1615f33b710.jpg",
+    "static/media/pen.png": "/static/media/pen.3d05599b41dacadb78a8.png",
     "static/media/icon-sun-cloud.png": "/static/media/icon-sun-cloud.3399b234b40032f90d9b.png",
     "static/media/ivancik.jpg": "/static/media/ivancik.442b474727c414bb3b85.jpg",
     "static/media/white-curved.jpeg": "/static/media/white-curved.a5b7db662b0b14ab5534.jpeg",
@@ -34,6 +35,6 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/js/main.4831036f.js"
+    "static/js/main.5d33b6ac.js"
   ]
 }
