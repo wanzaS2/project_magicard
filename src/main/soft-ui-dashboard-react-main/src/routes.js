@@ -54,6 +54,8 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+import PaymentsTables from "layouts/payments";
+import RecievedRequest from "layouts/recievedRequest";
 
 const routes = [
   {
@@ -72,6 +74,24 @@ const routes = [
     route: "/tables",
     icon: <Office size="12px" />,
     component: <Tables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "결제 내역",
+    key: "paymentstables",
+    route: "/payments/*",
+    icon: <Office size="12px" />,
+    component: <PaymentsTables />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "결재 요청 내역",
+    key: "requeststables",
+    route: "/recievedRequests/*",
+    icon: <Office size="12px" />,
+    component: <RecievedRequest />,
     noCollapse: true,
   },
   {
