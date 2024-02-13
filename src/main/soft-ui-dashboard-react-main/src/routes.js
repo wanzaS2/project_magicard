@@ -36,7 +36,6 @@ Coded by www.creative-tim.com
 */
 
 // Soft UI Dashboard React layouts
-import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import VirtualReality from "layouts/virtual-reality";
@@ -54,6 +53,7 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+import Dashboard from "component_jw/dashboard";
 
 const routes = [
   {
