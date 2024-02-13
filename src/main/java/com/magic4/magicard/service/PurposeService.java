@@ -3,6 +3,8 @@ package com.magic4.magicard.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.crypto.KeySelector.Purpose;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,24 +80,59 @@ public class PurposeService {
 
 
       // 우리 기업 대분류 넣기
-    public void insertCategory(@RequestBody PurposeCategory purposeCategory){
+    // public void insertCategory(@RequestBody PurposeCategory purposeCategory){
 
 
-      //session에서 company를 찾는다?
-      Company company = Company.builder()
-      .companyTicker("TEST1").build();
+    //   //session에서 company를 찾는다?
+    //   Company company = Company.builder()
+    //   .companyTicker("TEST1").build();
 
 
-      // PurposeCategory newpur = PurposeCategory.builder()
-      // .company(company)
+    //   // PurposeCategory newpur = PurposeCategory.builder()
+    //   // .company(company)
 
-      // purposeCategory.builder().build();
+    //   // purposeCategory.builder().build();
 
-      PurposeCategory  category = PurposeCategory.builder()
-      .company(company).purposeCategory(purposeCategory.getPurposeCategory()).build();
+    //   PurposeCategory  category = PurposeCategory.builder()
+    //   .company(company).purposeCategory(purposeCategory.getPurposeCategory()).build();
 
-      purCateRepo.save(category);
+    //   purCateRepo.save(category);
 
-    };
+    // };
+
+    public void insertCategory(String purposeCategory, String  purposeItem){
+
+         Company company = Company.builder().companyTicker("TEST1").build();
+
+
+         PurposeCategory  existingCategory  = purCateRepo.findByPurposeCategory(purposeCategory);
+
+         PurposeItem existingItem = purItemRepo.findByPurposeItem(purposeItem);
+
+
+         if(existingCategory == null && existingItem == null){
+
+          PurposeCategory category = PurposeCategory.builder().company(company).purposeCategory(purposeCategory).build();
+          purCateRepo.save(category);
+
+
+          PurposeItem item = PurposeItem.builder().purposeCategory(category).purposeItem(purposeItem).build();
+          purItemRepo.save(item);
+
+         }
+         else if(existingCategory != null  && existingItem == null){
+
+          PurposeItem item = PurposeItem.builder().purposeCategory(existingCategory).purposeItem(purposeItem).build();
+          
+          purItemRepo.save(item);
+         }
+         else {
+          System.out.println("들어가면 안돼");
+         }
+
+
+
+
+    }
     
 }

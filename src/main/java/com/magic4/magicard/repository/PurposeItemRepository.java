@@ -20,6 +20,8 @@ public interface PurposeItemRepository extends JpaRepository<PurposeItem,UUID>{
     //상위카테고리가 포함된 소분류 조회
     List<PurposeItem> findAllByPurposeCategoryIn(List<PurposeCategory> purposeCategory);
 
+    //해당 Item이 DB에 존재하는지
+    PurposeItem findByPurposeItem(String purposeItem);
 
 
 } 

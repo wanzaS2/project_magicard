@@ -1,31 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface SelectProps {
   purList: { purposeCategory: string }[];
-  initValue?: { purposeCategory: string };
+  initialValue?: string;
   propsname: string;
   setSelectValue: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedValue: (value: string) => void;
+  setInputValues: React.Dispatch<
+    React.SetStateAction<{ [key: string]: string }>
+  >;
+  inputValues: { [key: string]: string };
 }
 
 const Select: React.FC<SelectProps> = ({
   purList,
-  initValue,
+  initialValue,
   propsname,
   setSelectValue,
+  setSelectedValue,
+  setInputValues,
+  inputValues,
 }) => {
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    setSelectValue(selectedValue);
+    setSelectedValue(selectedValue);
+    setInputValues({ ...inputValues, [propsname]: selectedValue }); // inputValues 업데이트
+  };
 
   return (
-    <select
-      name={propsname}
-      value={initValue?.purposeCategory}
-      onChange={(e) => {
-        setSelectValue(e.target.value);
-      }}
-    >
-      {purList.map((purList, index) => (
-        <option key={index} value={purList.purposeCategory}>
-          {purList.purposeCategory}
+    <select name={propsname} value={initialValue} onChange={handleChange}>
+      {purList.map((item, index) => (
+        <option key={index} value={item.purposeCategory}>
+          {item.purposeCategory}
         </option>
       ))}
     </select>

@@ -1,6 +1,7 @@
 package com.magic4.magicard.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.crypto.KeySelector.Purpose;
 
@@ -36,14 +37,18 @@ public class PurposeController {
         return purService.getCateList1();
      };
 
-    // 대분류 소분류 찾기 가져오기
+    // 대분류 소분류  가져오기
     @GetMapping("/list.do")
     public List<PurposeDto> getCateList2(){
         return purService.getCateList2();
     };
 
+  
     @PostMapping("/insert.do")
-    public void insertCategory(@RequestBody PurposeCategory purposeCategory){
-        purService.insertCategory(purposeCategory);
-    };
+    public void inserCategory(@RequestBody Map<String, String> requestData){
+    String purposeCategory = requestData.get("purposeCategory");
+    String purposeItem = requestData.get("purposeItem");
+    purService.insertCategory(purposeCategory, purposeItem);
+    
+}
 }

@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { Col, Form, Row } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
 
@@ -14,9 +12,7 @@ interface Purpose {
 function PurposeList(props: any) {
   const [purList, setPurList] = useState<Purpose[]>([]);
   const [newCategory, setNewCategory] = useState<string>("");
-  const navi = useNavigate();
-  const location = useLocation();
-  // const uuid = location.state.uuid;
+  const [isAscending, setIsAscending] = useState<boolean>(true); // 오름차순 여부 상태 추가
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCategory(e.target.value);
@@ -36,23 +32,6 @@ function PurposeList(props: any) {
       });
   };
 
-  const handleSubmit = () => {
-    axios({
-      method: "post",
-      url: "/pur/insert.do",
-      data: { purposeCategory: newCategory },
-    })
-      .then((res) => {
-        console.log("insert 성공 insert 성공 insert 성공");
-        const newPurList: Purpose[] = [...purList, res.data];
-        setPurList(newPurList);
-        navi("/pur/list");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
     axios({
       method: "get",
@@ -69,15 +48,29 @@ function PurposeList(props: any) {
       });
   }, [newCategory]);
 
+  // 대분류를 기준으로 오름차순 또는 내림차순으로 정렬하는 함수
+  const sortListByCategory = () => {
+    const sortedList = [...purList];
+    sortedList.sort((a, b) => {
+      if (isAscending) {
+        return a.purposeCategory.localeCompare(b.purposeCategory);
+      } else {
+        return b.purposeCategory.localeCompare(a.purposeCategory);
+      }
+    });
+    setPurList(sortedList);
+    setIsAscending(!isAscending); // 정렬 방향을 반대로 변경
+  };
+
   return (
     <div>
       <h1> Category 목록</h1>
       <CategoryDisplay
         purList={purList}
         handleChange={handleChange}
-        handleSubmit={handleSubmit}
         newCategory={newCategory}
         deleteCategory={deleteCategory}
+        sortListByCategory={sortListByCategory} // 대분류 정렬 함수 추가
       ></CategoryDisplay>
     </div>
   );
@@ -86,20 +79,22 @@ function PurposeList(props: any) {
 function CategoryDisplay({
   purList,
   handleChange,
-  handleSubmit,
   newCategory,
   deleteCategory,
+  sortListByCategory,
 }: {
   purList: Purpose[];
   handleChange: any;
-  handleSubmit: any;
   newCategory: string;
   deleteCategory: any;
+  sortListByCategory: any;
 }) {
   return (
     <>
       <h1> Category Display</h1>
       <Modal></Modal>
+      {/* 새로운 버튼 추가 */}
+      <Button onClick={sortListByCategory}>대분류 정렬</Button>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -122,25 +117,6 @@ function CategoryDisplay({
           ))}
         </tbody>
       </Table>
-      <h1> 데이터 입력 연습!!!!!!!!</h1>
-      <Form>
-        <Form.Group as={Row} className="mb-3" controlId="newCategory">
-          <Form.Label column sm="2">
-            Add New Category
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              type="text"
-              placeholder="Enter category"
-              value={newCategory}
-              onChange={handleChange}
-            />
-          </Col>
-        </Form.Group>
-        <Button variant="primary" onClick={handleSubmit}>
-          Add
-        </Button>
-      </Form>
     </>
   );
 }
