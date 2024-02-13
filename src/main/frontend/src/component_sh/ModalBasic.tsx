@@ -43,8 +43,12 @@ function ModalBasic({ setModalOpen }: ModalBasicProps) {
     })
       .then((res) => {
         console.log("대 소 insert 성공!!!!!!!!!!");
-        alert("입력성공!!");
-        // 성공적으로 처리된 후 수행할 작업
+
+        console.log(res.data + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        if (res.data === 0) alert("값이 중복되었습니다.");
+        else {
+          alert("성공");
+        }
       })
       .catch((err) => {
         console.log(err);

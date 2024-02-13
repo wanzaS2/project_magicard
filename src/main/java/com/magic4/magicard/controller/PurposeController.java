@@ -45,10 +45,10 @@ public class PurposeController {
 
   
     @PostMapping("/insert.do")
-    public void inserCategory(@RequestBody Map<String, String> requestData){
+    public int inserCategory(@RequestBody Map<String, String> requestData){
     String purposeCategory = requestData.get("purposeCategory");
     String purposeItem = requestData.get("purposeItem");
-    purService.insertCategory(purposeCategory, purposeItem);
-    
+    return  purService.insertCategory(purposeCategory, purposeItem);
+
 }
 }
