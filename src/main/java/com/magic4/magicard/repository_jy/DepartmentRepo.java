@@ -13,7 +13,7 @@ public List<Department> selectAllDeptOrder();
 
 @Query(value = "select d.department_id, d.is_admin_department, d.department_name, dep.department_name as super_department from department d " +
         "join department dep on d.super_department_id = dep.department_id " +
-        "where d.department_id=:departmentId", nativeQuery = true)
+        "where d.department_id=:department_id", nativeQuery = true)
 public Department selectDetail(int departmentId);
 
 @Query(value = """
@@ -30,7 +30,7 @@ public Department selectDetail(int departmentId);
     ) as manager
     join department
     on department.department_id = manager.super_department_id
-    where manager.department_id = :departmentId
+    where manager.department_id = :department_id
     """, nativeQuery=true)
     public Department selectManager(int departmentId);
 
@@ -47,29 +47,4 @@ public Department selectDetail(int departmentId);
                 "on  emin.rank_priority = ee.rank_priority\r\n" + //
                 "where emin.rank_priority = ee.rank_priority and ee.department_id = emin.department_id and emin.super_department_id is null", nativeQuery = true)
     public Department selectFirstManager();
-
-
-
-    //실제로 사용해야 하는 쿼리문
-    // select * from (
-    //     select count(e.employee_code) as members, d.department_id as tmid, d.department_name from department d
-    //     left join employee e
-    //     on d.department_id = e.department_id
-    //     group by d.department_id, d.department_name
-    //     order by d.department_id)
-    //     as tm
-    //    left join (select * from(
-    //          select ee.rank_priority, ee.employee_email, ee.employee_code, ee.employee_name, emin.department_name, emin.department_id as smiid, emin.super_department_id from employee ee
-    //          join (
-    //              SELECT MIN(e.rank_priority) as rank_priority, d.department_id, d.is_admin_department, d.department_name, d.super_department_id
-    //              FROM department d
-    //              JOIN employee e ON d.department_id = e.department_id
-    //              GROUP BY d.department_id
-    //          ) as emin
-    //          on  emin.rank_priority = ee.rank_priority
-    //          where emin.rank_priority = ee.rank_priority and ee.department_id = emin.department_id
-    //      ) as manager
-    //      join department
-    //      on department.department_id = manager.super_department_id) as smi
-    //      on tmid = smiid
 }
