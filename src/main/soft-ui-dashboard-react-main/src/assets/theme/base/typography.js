@@ -1,34 +1,14 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v3.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-/**
- * The base typography styles for the Soft UI Dashboard React.
- * You can add new typography style using this file.
- * You can customized the typography styles for the entire Soft UI Dashboard React using thie file.
- */
-
 // Soft UI Dashboard React Base Styles
 import colors from "assets/theme/base/colors";
 
 // Soft UI Dashboard React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
+import "../../fonts/font.css";
 
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily: '"ChungBukUniversity", "Roboto", "Helvetica", "Arial", sans-serif',
   fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,

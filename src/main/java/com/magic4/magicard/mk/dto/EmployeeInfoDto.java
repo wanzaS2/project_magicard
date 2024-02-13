@@ -7,12 +7,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @Builder
 public class EmployeeInfoDto {
 
-    // 로그인 후 세션 또는 쿠키에 담을 직원 정보
+    // 직원 관리 리스트 정보
 
     private String employeeEmail;
 
@@ -24,13 +26,13 @@ public class EmployeeInfoDto {
 
     private EmployeeRank employeeRank;
 
-    // 상급부서
+    private Timestamp hireDate;
 
-    // 입사일
-
-    // 권한
+    private String authority;   // 권한
 
     private Department department;
+
+    private Department superDepartment;
 
     private Company company;
 }

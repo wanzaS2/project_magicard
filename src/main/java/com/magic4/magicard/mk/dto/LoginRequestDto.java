@@ -11,5 +11,5 @@ public class LoginRequestDto {
 
     private String employeeEmail;
 
-    private String userPassword;
+//    private String userPassword;
 }

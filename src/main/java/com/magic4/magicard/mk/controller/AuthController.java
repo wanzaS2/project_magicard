@@ -1,15 +1,11 @@
 package com.magic4.magicard.mk.controller;
 
-import com.magic4.magicard.mk.dto.EmployeeEmailDto;
-import com.magic4.magicard.mk.dto.EmployeeInfoDto;
 import com.magic4.magicard.mk.dto.LoginRequestDto;
 import com.magic4.magicard.mk.service.AuthService;
 import com.magic4.magicard.mk.service.EmployeeService;
-import com.magic4.magicard.vo.Employee;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,11 +20,19 @@ public class AuthController {
     private final EmployeeService employeeService;
     private final AuthService authService;
 
-//    @PostMapping("/login")
-//    public ResponseEntity<EmployeeInfoDto> login(HttpServletRequest httpServletRequest, LoginRequestDto loginRequestDto){
-//
-//        HttpSession session=httpServletRequest.getSession();
-//
-//        aut
-//    }
+    @PostMapping("/login")
+    public void login(HttpServletRequest httpServletRequest){
+
+        LoginRequestDto loginRequestDto=LoginRequestDto.builder()
+                .employeeEmail("aa1@anaver.com")
+//                .userPassword()
+                .build();
+
+        // 세션을 생성하기 전에 기존의 세션 파기
+        httpServletRequest.getSession().invalidate();
+        HttpSession session = httpServletRequest.getSession();  // Session이 없으면 생성
+
+        session.setAttribute("myInfo", authService.login(loginRequestDto));
+
+    }
 }

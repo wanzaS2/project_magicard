@@ -7,11 +7,13 @@ import com.magic4.magicard.mk.repository.DepartmentRepo;
 import com.magic4.magicard.mk.repository.EmployeeRankRepo;
 import com.magic4.magicard.mk.repository.EmployeeRepo;
 import com.magic4.magicard.vo.Company;
+import com.magic4.magicard.vo.Department;
 import com.magic4.magicard.vo.Employee;
 import com.magic4.magicard.vo.EmployeeRank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +27,7 @@ public class EmployeeService {
     private final DepartmentRepo departmentRepo;
 
     // 회사의 전체 직원 조회
-    public List<EmployeeInfoDto> getAllEmpList(){
-
-        Company company= companyRepo.findById("SHDS").orElse(null);
+    public List<EmployeeInfoDto> getAllEmpList(Company company){
 
         // 세션에 등록된 Company 정보로 회사의 직급들을 조회
         List<EmployeeRank> employeeRankList=employeeRankRepo.findEmployeeRanksByCompany(company);
@@ -68,6 +68,13 @@ public class EmployeeService {
         List<EmployeeInfoDto> employeeInfoList=new ArrayList<>();
 
         for (Employee employee:employees){
+            String authority="";
+            if (employee.getDepartment().isAdminDepartment()){
+                authority="관리자";
+            } else {
+                authority="일반";
+            }
+
             employeeInfoList.add(EmployeeInfoDto.builder()
                     .employeeEmail(employee.getEmployeeEmail())
                     .employeeCode(employee.getEmployeeCode())
@@ -76,6 +83,9 @@ public class EmployeeService {
                     .phone(employee.getPhone())
                     .company(company)
                     .department(employee.getDepartment())
+                    .superDepartment(employee.getDepartment().getSuperDepartment())
+                    .authority(authority)
+                    .hireDate(employee.getHireDate())
                     .build());
         }
 

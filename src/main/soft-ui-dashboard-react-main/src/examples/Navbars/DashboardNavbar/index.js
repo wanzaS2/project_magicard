@@ -57,6 +57,8 @@ import {
 // Images
 import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
+import { Button } from "@mui/material";
+import axios from "axios";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -95,6 +97,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+
+  const login = () => {
+    axios.post('/auth/login')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => console.error(error));
+  };
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -136,6 +146,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   );
 
   return (
+    <div style={{ backgroundColor:'pink' }}>
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
@@ -149,12 +160,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
             <SoftBox pr={1}>
               <SoftInput
-                placeholder="Type here..."
+                placeholder="검색어를 입력하세요."
                 icon={{ component: "search", direction: "left" }}
               />
             </SoftBox>
             <SoftBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in">
+              <Button onClick={login}>
                 <IconButton sx={navbarIconButton} size="small">
                   <Icon
                     sx={({ palette: { dark, white } }) => ({
@@ -171,7 +182,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     Sign in
                   </SoftTypography>
                 </IconButton>
-              </Link>
+              </Button>
               <IconButton
                 size="small"
                 color="inherit"
@@ -207,6 +218,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
         )}
       </Toolbar>
     </AppBar>
+    </div>
   );
 }
 

@@ -1,16 +1,12 @@
 package com.magic4.magicard.mk.controller;
 
-import com.magic4.magicard.mk.dto.EmployeeEmailDto;
 import com.magic4.magicard.mk.dto.EmployeeInfoDto;
-import com.magic4.magicard.mk.response.service.ResponseService;
+import com.magic4.magicard.mk.dto.LoginResponseDto;
 import com.magic4.magicard.mk.service.EmployeeService;
-import com.magic4.magicard.vo.Employee;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +19,22 @@ public class EmployeeController {
 
     // 회사의 전체 직원 조회
     @GetMapping("/list/all")
-    public List<EmployeeInfoDto> getAllEmpList(){
+    public List<EmployeeInfoDto> getAllEmpList(HttpServletRequest httpServletRequest){
 
-        return employeeService.getAllEmpList();
+        HttpSession session = httpServletRequest.getSession();
+        System.out.println("session"+session);
+        if (session == null || !httpServletRequest.isRequestedSessionIdValid()) {
+            System.out.println("세션이 무효화 상태입니다.");
+        }
+
+        System.out.println(session.getAttribute("myInfo"));
+
+        if (session.getAttribute("myInfo")==null){
+            return null;
+        } else {
+            LoginResponseDto loginEmp=(LoginResponseDto) session.getAttribute("myInfo");
+            return employeeService.getAllEmpList(loginEmp.getCompany());
+        }
     }
 
     // 회사의 특정 부서 소속 직원 조회
@@ -39,6 +48,10 @@ public class EmployeeController {
     public List<EmployeeInfoDto> getEmpListByRank(@PathVariable("employeeRankId") int employeeRankId){
         return employeeService.getEmpListByRank(employeeRankId);
     }
-    
-    // 특정 직원 검색
+
+    // 회사의 특정 권한 직원 조회
+//    @GetMapping("/list/rank/{employeeRankId}")
+//    public List<EmployeeInfoDto> getEmpListByRank(@PathVariable("employeeRankId") int employeeRankId){
+//        return employeeService.getEmpListByRank(employeeRankId);
+//    }
 }
