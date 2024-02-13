@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.magic4.magicard.vo.PurposeCategory;
 
-public interface PurposeCategoryRepo extends JpaRepository<PurposeCategory,UUID>{
+public interface PurposeCategoryRepo extends JpaRepository<PurposeCategory,Integer>{
   
 }

@@ -13,10 +13,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 
-public interface PaymentInfoRepo extends JpaRepository<PaymentInfo, UUID> {
+public interface PaymentInfoRepo extends JpaRepository<PaymentInfo, Integer> {
   List<PaymentInfo> findByIssuedCardOrderByPaymentTimeDesc(IssuedCard issuedCard);
   @Query("SELECT p FROM PaymentInfo p WHERE p.issuedCard = :issuedCard AND YEAR(p.paymentTime) = YEAR(CURRENT_DATE()) AND MONTH(p.paymentTime) = MONTH(CURRENT_DATE())")
   List<PaymentInfo> findByIssuedCardAndThisMonth(@Param("issuedCard") IssuedCard issuedCard);
 
-  PaymentInfo findByPaymentId(UUID paymentId);
+  PaymentInfo findByPaymentId(Integer paymentId);
 }

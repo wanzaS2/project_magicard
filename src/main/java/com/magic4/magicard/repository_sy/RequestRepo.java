@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.magic4.magicard.vo.Request;
 import org.springframework.data.jpa.repository.Query;
 
-public interface RequestRepo extends JpaRepository<Request, UUID>{
+public interface RequestRepo extends JpaRepository<Request, Integer>{
     List<Request> findByResponseEmployeeEmailAndApprovalStepsOrderByApprovalStepsAsc(String responseEmployeeEmail, ApprovalSteps approvalSteps);
     Request findByPaymentInfo(PaymentInfo paymentInfo);
     List<Request> findByEmployeeAndRequestLevel(Employee employee, int requestLevel);

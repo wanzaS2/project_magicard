@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentInfoDto {
-    private UUID paymentId;
+    private int paymentId;
     private IssuedCardDto issuedCard;
     private int payAmount;
     private String merchant;

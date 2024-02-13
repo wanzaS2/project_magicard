@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.magic4.magicard.vo.PurposeItem;
 
-public interface PurposeItemRepo extends JpaRepository<PurposeItem,UUID>{
+public interface PurposeItemRepo extends JpaRepository<PurposeItem,Integer>{
   PurposeItem findByPurposeItem(String purposeItem);
 }

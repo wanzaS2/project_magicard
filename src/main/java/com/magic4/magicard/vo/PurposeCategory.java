@@ -30,13 +30,11 @@ import lombok.ToString;
 public class PurposeCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID purposeCategoryUid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer purposeCategoryId;
 
     @ManyToOne
     @JoinColumn(name = "company_ticker")
-    // @JoinTable(name="company",
-    // joinColumns = @JoinColumn(name="company_ticker"))
     private Company company;
 
     @NonNull

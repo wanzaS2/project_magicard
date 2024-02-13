@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurposeItemDto {
-    private UUID purposeItemUid;
+    private int purposeItemId;
     private PurposeCategory purposeCategory;
     private String purposeItem;
 }

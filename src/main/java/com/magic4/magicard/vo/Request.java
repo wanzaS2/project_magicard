@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Request {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID requestID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer requestID;
 
     @ManyToOne
     @JoinColumn(name = "request_employee_email")

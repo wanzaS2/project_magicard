@@ -31,8 +31,8 @@ import lombok.ToString;
 @Table
 public class PaymentInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID paymentId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer paymentId;
 
     @ManyToOne
     @JoinColumn(name = "issued_card_id")
