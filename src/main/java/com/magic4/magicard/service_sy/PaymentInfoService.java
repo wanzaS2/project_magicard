@@ -12,9 +12,9 @@ import com.magic4.magicard.vo.Request;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.magic4.magicard.repository_sy.RequestRepo;
-import com.magic4.magicard.repository_sy.IssuedCardRepo;
-import com.magic4.magicard.repository_sy.PaymentInfoRepo;
+import com.magic4.magicard.repository.RequestRepo;
+import com.magic4.magicard.repository.IssuedCardRepo;
+import com.magic4.magicard.repository.PaymentInfoRepo;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.magic4.magicard.mk.repository;
+package com.magic4.magicard.repository;
 
 import com.magic4.magicard.mk.dto.EmployeeInfoDto;
 import com.magic4.magicard.vo.Department;

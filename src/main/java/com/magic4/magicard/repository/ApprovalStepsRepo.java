@@ -1,4 +1,4 @@
-package com.magic4.magicard.repository_sy;
+package com.magic4.magicard.repository;
 
 import com.magic4.magicard.vo.ApprovalSteps;
 import org.springframework.data.jpa.repository.JpaRepository;

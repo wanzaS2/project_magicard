@@ -1,4 +1,4 @@
-package com.magic4.magicard.repository_sy;
+package com.magic4.magicard.repository;
 
 import java.util.UUID;
 
