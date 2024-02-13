@@ -24,6 +24,7 @@ function DashBoardMain() {
                 <div> 
                     <DoughnutChart/>
                 </div>    
+
                 <br/><br/>            
             </div>
         </div>

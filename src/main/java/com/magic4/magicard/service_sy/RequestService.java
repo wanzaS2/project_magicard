@@ -1,7 +1,7 @@
 package com.magic4.magicard.service_sy;
 
 import com.magic4.magicard.dto_sy.*;
-import com.magic4.magicard.repository_sy.*;
+import com.magic4.magicard.repository.*;
 import com.magic4.magicard.vo.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

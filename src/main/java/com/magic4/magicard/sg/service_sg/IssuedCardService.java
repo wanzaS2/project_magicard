@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.magic4.magicard.repository_sy.IssuedCardRepo;
+import com.magic4.magicard.repository.IssuedCardRepo;
 import com.magic4.magicard.sg.dto.IssueCardFormDto;
 import com.magic4.magicard.sg.repository_sg.CardTypeRepo;
 import com.magic4.magicard.vo.CardType;

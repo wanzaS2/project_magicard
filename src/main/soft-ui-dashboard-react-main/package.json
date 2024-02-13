@@ -27,6 +27,7 @@
     "@types/react-dom": "^18.2.18",
     "axios": "^1.6.7",
     "chart.js": "3.9.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "chroma-js": "2.4.2",
     "prop-types": "15.8.1",
     "react": ">=16.8.0",
@@ -77,6 +78,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
+    "file-loader": "^6.2.0",
     "prettier": "2.8.8"
   },
   "peerDependencies": {
