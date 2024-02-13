@@ -1,19 +1,16 @@
 package com.magic4.magicard.mk.service;
 
-import com.magic4.magicard.mk.dto.EmployeeEmailDto;
 import com.magic4.magicard.mk.dto.EmployeeInfoDto;
-import com.magic4.magicard.mk.repository.CompanyRepo;
-import com.magic4.magicard.mk.repository.DepartmentRepo;
-import com.magic4.magicard.mk.repository.EmployeeRankRepo;
-import com.magic4.magicard.mk.repository.EmployeeRepo;
+import com.magic4.magicard.repository.CompanyRepo;
+import com.magic4.magicard.repository.DepartmentRepo;
+import com.magic4.magicard.repository.EmployeeRankRepo;
+import com.magic4.magicard.repository.EmployeeRepo;
 import com.magic4.magicard.vo.Company;
-import com.magic4.magicard.vo.Department;
 import com.magic4.magicard.vo.Employee;
 import com.magic4.magicard.vo.EmployeeRank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 

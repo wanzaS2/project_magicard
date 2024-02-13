@@ -1,4 +1,4 @@
-package com.magic4.magicard.mk.repository;
+package com.magic4.magicard.repository;
 
 import com.magic4.magicard.vo.Department;
 import org.springframework.data.jpa.repository.JpaRepository;

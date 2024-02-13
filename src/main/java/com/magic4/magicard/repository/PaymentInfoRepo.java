@@ -1,4 +1,4 @@
-package com.magic4.magicard.repository_sy;
+package com.magic4.magicard.repository;
 
 import java.sql.Timestamp;
 import java.util.UUID;
