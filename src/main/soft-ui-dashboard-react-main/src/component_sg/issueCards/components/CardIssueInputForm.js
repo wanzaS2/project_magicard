@@ -171,7 +171,8 @@ const submitCardIssueForm = (cardCode, rank, maxLimit, cardCount, agreement) => 
       alert("신청 요청 중 문제가 발생하였습니다. 관리자에게 문의해주세요.");
     })
     .finally(function () {
-      window.location.reload();
+      window.location.href = "/issue-cards";
+      //window.location.reload();
     });
 };
 
