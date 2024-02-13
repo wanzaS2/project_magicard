@@ -6,21 +6,22 @@ import SoftTypography from "components/SoftTypography";
 import SoftBadge from "components/SoftBadge";
 import axios from "axios";
 
-function employeesTableData(){
+function employeesTableData() {
   const [empList, setEmpList] = useState([]);
 
   const getEmployees = () => {
-    axios.get('/emp/list/all')
-      .then(response => {
+    axios
+      .get("/emp/list/all")
+      .then((response) => {
         console.log(response.data);
         setEmpList(response.data);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
     getEmployees();
-    console.log('empList : ', empList);
+    console.log("empList : ", empList);
   }, []);
 
   function Employee({ employeeCode, name, email }) {
@@ -42,46 +43,64 @@ function employeesTableData(){
       </SoftBox>
     );
   }
-  
+
   function Function({ rank }) {
     return (
       <>
-      <SoftBox display="flex" flexDirection="column">
-        <SoftTypography variant="caption" fontWeight="medium" color="text">
-          {rank}
-        </SoftTypography>
-      </SoftBox>
+        <SoftBox display="flex" flexDirection="column">
+          <SoftTypography variant="caption" fontWeight="medium" color="text">
+            {rank}
+          </SoftTypography>
+        </SoftBox>
       </>
     );
   }
 
-  const rows=empList.map((emp)=>{
+  const rows = empList.map((emp) => {
     return {
-      사원: <Employee employeeCode={emp.employeeCode} name={emp.employeeName} email={emp.employeeEmail} />,
-        직급: <Function rank={emp.employeeRank.rankName} />,
-        입사일: (
-          <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-            {emp.hireDate.substr(0, 10)}
-          </SoftTypography>
-        ),
-        상급조직: (
-          <SoftBadge variant="gradient" badgeContent={emp.superDepartment?emp.superDepartment.departmentName:"-"} color="success" size="xs" container />
-        ),
-        소속조직: (
-          <SoftBadge variant="gradient" badgeContent={emp.department.departmentName} color="success" size="xs" container />
-        ),
-        권한: (
-          <SoftTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="secondary"
-            fontWeight="medium"
-          >
-            {emp.authority}
-          </SoftTypography>
-        ),
-    }
+      사원: (
+        <Employee
+          employeeCode={emp.employeeCode}
+          name={emp.employeeName}
+          email={emp.employeeEmail}
+        />
+      ),
+      직급: <Function rank={emp.employeeRank.rankName} />,
+      입사일: (
+        <SoftTypography variant="caption" color="secondary" fontWeight="medium">
+          {emp.hireDate.substr(0, 10)}
+        </SoftTypography>
+      ),
+      상급조직: (
+        <SoftBadge
+          variant="gradient"
+          badgeContent={emp.superDepartment ? emp.superDepartment.departmentName : "-"}
+          color="success"
+          size="xs"
+          container
+        />
+      ),
+      소속조직: (
+        <SoftBadge
+          variant="gradient"
+          badgeContent={emp.department.departmentName}
+          color="success"
+          size="xs"
+          container
+        />
+      ),
+      권한: (
+        <SoftTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="secondary"
+          fontWeight="medium"
+        >
+          {emp.authority}
+        </SoftTypography>
+      ),
+    };
   });
 
   const data = {
@@ -93,7 +112,7 @@ function employeesTableData(){
       { name: "소속조직", align: "center" },
       { name: "권한", align: "center" },
     ],
-  
+
     rows,
   };
 
