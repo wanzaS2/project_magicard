@@ -36,29 +36,31 @@ Coded by www.creative-tim.com
 */
 
 // Soft UI Dashboard React layouts
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
-import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
+import Tables from "./layouts/tables";
+import Billing from "./layouts/billing";
+import VirtualReality from "./layouts/virtual-reality";
+import RTL from "./layouts/rtl";
+import Profile from "./layouts/profile";
+import SignIn from "./layouts/authentication/sign-in";
+import SignUp from "./layouts/authentication/sign-up";
 
 // Soft UI Dashboard React icons
-import Shop from "examples/Icons/Shop";
-import Office from "examples/Icons/Office";
-import Settings from "examples/Icons/Settings";
-import Document from "examples/Icons/Document";
-import SpaceShip from "examples/Icons/SpaceShip";
-import CustomerSupport from "examples/Icons/CustomerSupport";
-import CreditCard from "examples/Icons/CreditCard";
-import Cube from "examples/Icons/Cube";
+import Shop from "./examples/Icons/Shop";
+import Office from "./examples/Icons/Office";
+import Settings from "./examples/Icons/Settings";
+import Document from "./examples/Icons/Document";
+import SpaceShip from "./examples/Icons/SpaceShip";
+import CustomerSupport from "./examples/Icons/CustomerSupport";
+import CreditCard from "./examples/Icons/CreditCard";
+import Cube from "./examples/Icons/Cube";
 
-import Dashboard from "component_jw/dashboard";
-import Onboarding from "component_sg/onboarding";
-import IssueCards from "component_sg/issueCards/components";
-import RecievedRequest from "layouts/recievedRequest";
-import PaymentsTables from "layouts/payments";
+import Dashboard from "./component_jw/dashboard";
+import Onboarding from "./component_sg/onboarding";
+import IssueCards from "./component_sg/issueCards/components";
+import RecievedRequest from "./layouts/recievedRequest";
+import PaymentsTables from "./layouts/payments";
+import Member from "./examples/Icons/Member";
+import Employees from "./layouts/employees";
 
 const routes = [
   {
@@ -68,6 +70,15 @@ const routes = [
     route: "/dashboard",
     icon: <Shop size="12px" />,
     component: <Dashboard />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "멤버 관리",
+    key: "employees",
+    route: "/member-Management",
+    icon: <Member size="12px" />,
+    component: <Employees />,
     noCollapse: true,
   },
   {
