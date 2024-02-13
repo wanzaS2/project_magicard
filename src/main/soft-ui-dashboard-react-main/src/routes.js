@@ -56,6 +56,10 @@ import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import PaymentsTables from "layouts/payments";
 import RecievedRequest from "layouts/recievedRequest";
+import { components } from "react-select";
+import { PureComponent } from "react";
+import PurposeList from "layouts/category/data/PurposeList";
+import PurposeHome from "layouts/category/data/PurposeHome";
 
 const routes = [
   {
@@ -92,6 +96,15 @@ const routes = [
     route: "/recievedRequests/*",
     icon: <Office size="12px" />,
     component: <RecievedRequest />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "카테고리 관리",
+    key: "category",
+    route: "/category/*",
+    icon: <Settings size="12px" />,
+    components: <PurposeHome />,
     noCollapse: true,
   },
   {
