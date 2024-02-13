@@ -56,6 +56,8 @@ import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import Onboarding from "component_sg/onboarding";
 import IssueCards from "component_sg/issueCards/components";
+import RecievedRequest from "layouts/recievedRequest";
+import PaymentsTables from "layouts/payments";
 
 const routes = [
   {

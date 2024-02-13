@@ -147,17 +147,24 @@ const submitCardIssueForm = (cardCode, rank, maxLimit, cardCount, agreement) => 
     return;
   }
 
+  if (maxLimit > 200000000) {
+    alert("올바른 한도 금액을 입력 해 주십시오.");
+    return;
+  }
+
   if (cardCount <= 0) {
     alert("올바른 카드 수를 입력 해 주십시오.");
     return;
   }
 
-  alert(cardCode + " " + rank + " " + maxLimit + " " + cardCount);
+  if (cardCount > 1000) {
+    alert("올바른 카드 수를 입력 해 주십시오.");
+    return;
+  }
 
   axios
     .post("/issue-card", { cardCode, rank, maxLimit, cardCount })
     .then(function (response) {
-      console.log(response);
       alert("신청 요청이 완료되었습니다.");
     })
     .catch(function (error) {
